@@ -1,0 +1,18 @@
+# Swap files
+*.swp
+
+# User-specific settings in Idea
+./idea/workspace.xml
+./idea/tasks.xml
+
+.eunit
+deps
+*.o
+*.beam
+*.plt
+erl_crash.dump
+ebin/*.beam
+rel/example_project
+.concrete/DEV_MODE
+.rebar
+
