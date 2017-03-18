@@ -2,8 +2,8 @@
 *.swp
 
 # User-specific settings in Idea
-./idea/workspace.xml
-./idea/tasks.xml
+.idea/workspace.xml
+.idea/tasks.xml
 
 .eunit
 deps
