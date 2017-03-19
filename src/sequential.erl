@@ -10,7 +10,7 @@
 -author("vishal").
 
 %% API
--export([sum/1, sum/2, create/1]).
+-export([sum/1, sum/2, create/1, reverse_create/1]).
 
 % Ex 3-1: Evaluating Expressions
 sum(0) ->
@@ -30,3 +30,10 @@ create(0, List) ->
   List;
 create(N, List) ->
   create(N - 1, [N | List]).
+
+reverse_create(N) when N > 0 -> reverse_create(N, 1, []).
+
+reverse_create(N, N, List) ->
+  [N | List];
+reverse_create(N, M, List) when N > M ->
+  reverse_create(N, M + 1, [M | List]).
