@@ -12,7 +12,7 @@
 %% API
 -export([
   sum/1, sum/2, create/1, reverse_create/1, print_integers/1, print_even_integers/1,
-  filter/2, reverse/1, concatenate/1, flatten/1]).
+  filter/2, reverse/1, concatenate/1, flatten/1, quicksort/1]).
 
 % Ex 3-1: Evaluating Expressions
 sum(0) ->
@@ -87,3 +87,13 @@ flatten_nested_list([Head | Tail]) when is_list(Head) ->
   flatten_nested_list(Head) ++ flatten_nested_list(Tail);
 flatten_nested_list([Head | Tail]) ->
   [Head | flatten_nested_list(Tail)].
+
+% Ex 3-6: Sorting Lists
+
+% Quicksort
+quicksort([]) ->
+  [];
+quicksort([Head | Tail]) ->
+  quicksort(lists:filter(fun(X) -> X < Head end, Tail)) ++
+    [Head] ++
+    quicksort(lists:filter(fun(X) -> X >= Head end, Tail)).
