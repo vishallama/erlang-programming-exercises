@@ -10,6 +10,8 @@
 -author("vishal").
 
 %% API
--export([new/0]).
+-export([new/0, destroy/1]).
 
 new() -> [].
+
+destroy(_Db) -> ok.
