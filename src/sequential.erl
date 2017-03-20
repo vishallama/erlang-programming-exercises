@@ -12,7 +12,7 @@
 %% API
 -export([
   sum/1, sum/2, create/1, reverse_create/1, print_integers/1, print_even_integers/1,
-  filter/2, reverse/1, concatenate/1, flatten/1, quicksort/1]).
+  filter/2, reverse/1, concatenate/1, flatten/1, quicksort/1, mergesort/1]).
 
 % Ex 3-1: Evaluating Expressions
 sum(0) ->
@@ -97,3 +97,23 @@ quicksort([Head | Tail]) ->
   quicksort(lists:filter(fun(X) -> X < Head end, Tail)) ++
     [Head] ++
     quicksort(lists:filter(fun(X) -> X >= Head end, Tail)).
+
+%Mergesort
+mergesort([]) ->
+  [];
+mergesort([X]) ->
+  [X];
+mergesort(List) ->
+  Length = length(List),
+  {Left, Right} = lists:split(trunc(Length / 2), List),
+  merge(mergesort(Left), mergesort(Right)).
+
+merge([], Right) ->
+  Right;
+merge(Left, []) ->
+  Left;
+merge([X | Xs] = Left, [Y | Ys] = Right) ->
+  case X =< Y of
+    true -> [X | merge(Xs, Right)];
+    false -> [Y | merge(Left, Ys)]
+  end.
