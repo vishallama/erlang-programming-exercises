@@ -12,7 +12,7 @@
 %% API
 -export([
   sum/1, sum/2, create/1, reverse_create/1, print_integers/1, print_even_integers/1,
-  filter/2]).
+  filter/2, reverse/1]).
 
 % Ex 3-1: Evaluating Expressions
 sum(0) ->
@@ -64,3 +64,10 @@ filter([Head | Tail], N) when Head =< N ->
   [Head | filter(Tail, N)];
 filter([_Head | Tail], N) ->
   filter(Tail, N).
+
+reverse(List) -> reverse(List, []).
+
+reverse([], AccList) ->
+  AccList;
+reverse([Head | Tail], AccList) ->
+  reverse(Tail, [Head | AccList]).
