@@ -10,8 +10,10 @@
 -author("vishal").
 
 %% API
--export([new/0, destroy/1]).
+-export([new/0, destroy/1, write/3]).
 
 new() -> [].
 
 destroy(_Db) -> ok.
+
+write(Key, Element, Db) -> [{Key, Element} | Db].
