@@ -10,7 +10,9 @@
 -author("vishal").
 
 %% API
--export([sum/1, sum/2, create/1, reverse_create/1, print_integers/1, print_even_integers/1]).
+-export([
+  sum/1, sum/2, create/1, reverse_create/1, print_integers/1, print_even_integers/1,
+  filter/2]).
 
 % Ex 3-1: Evaluating Expressions
 sum(0) ->
@@ -53,3 +55,12 @@ print_even_integers(M, N) when M > N ->
 print_even_integers(M, N) ->
   io:format("Number: ~p~n", [M]),
   print_even_integers(M + 2, N).
+
+% Ex 3-5: Manipulating Lists
+
+filter([], _N) ->
+  [];
+filter([Head | Tail], N) when Head =< N ->
+  [Head | filter(Tail, N)];
+filter([_Head | Tail], N) ->
+  filter(Tail, N).
