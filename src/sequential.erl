@@ -10,7 +10,7 @@
 -author("vishal").
 
 %% API
--export([sum/1, sum/2, create/1, reverse_create/1, print_integers/1]).
+-export([sum/1, sum/2, create/1, reverse_create/1, print_integers/1, print_even_integers/1]).
 
 % Ex 3-1: Evaluating Expressions
 sum(0) ->
@@ -45,3 +45,11 @@ print_integers(N, N) ->
 print_integers(M, N) when M < N ->
   io:format("Number: ~p~n", [M]),
   print_integers(M + 1, N).
+
+print_even_integers(N) when N > 0 -> print_even_integers(2, N).
+
+print_even_integers(M, N) when M > N ->
+  io:format("", []);
+print_even_integers(M, N) ->
+  io:format("Number: ~p~n", [M]),
+  print_even_integers(M + 2, N).
