@@ -10,7 +10,7 @@
 -author("vishal").
 
 %% API
--export([sum/1, sum/2, create/1, reverse_create/1]).
+-export([sum/1, sum/2, create/1, reverse_create/1, print_integers/1]).
 
 % Ex 3-1: Evaluating Expressions
 sum(0) ->
@@ -37,3 +37,11 @@ reverse_create(N, N, List) ->
   [N | List];
 reverse_create(N, M, List) when N > M ->
   reverse_create(N, M + 1, [M | List]).
+
+print_integers(N) when N > 0 -> print_integers(1, N).
+
+print_integers(N, N) ->
+  io:format("Number: ~p~n", [N]);
+print_integers(M, N) when M < N ->
+  io:format("Number: ~p~n", [M]),
+  print_integers(M + 1, N).
