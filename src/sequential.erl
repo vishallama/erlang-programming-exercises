@@ -12,7 +12,7 @@
 %% API
 -export([
   sum/1, sum/2, create/1, reverse_create/1, print_integers/1, print_even_integers/1,
-  filter/2, reverse/1, concatenate/1]).
+  filter/2, reverse/1, concatenate/1, flatten/1]).
 
 % Ex 3-1: Evaluating Expressions
 sum(0) ->
@@ -76,3 +76,14 @@ concatenate([]) ->
   [];
 concatenate([Head | Tail]) ->
   Head ++ concatenate(Tail).
+
+flatten(Lists) ->
+  TransformedLists = lists:map(fun(List) -> flatten_nested_list(List) end, Lists),
+  concatenate(TransformedLists).
+
+flatten_nested_list([]) ->
+  [];
+flatten_nested_list([Head | Tail]) when is_list(Head) ->
+  flatten_nested_list(Head) ++ flatten_nested_list(Tail);
+flatten_nested_list([Head | Tail]) ->
+  [Head | flatten_nested_list(Tail)].
