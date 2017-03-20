@@ -10,7 +10,7 @@
 -author("vishal").
 
 %% API
--export([new/0, destroy/1, write/3, delete/2]).
+-export([new/0, destroy/1, write/3, delete/2, read/2]).
 
 new() -> [].
 
@@ -24,3 +24,10 @@ delete(Key, [{Key, _Element} | Tail]) ->
   Tail;
 delete(Key, [{_K, _E} = V | Tail]) ->
   [V | delete(Key, Tail)].
+
+read(_Key, []) ->
+  {error, instance};
+read(Key, [{Key, Element} | _Tail]) ->
+  {ok, Element};
+read(Key, [{_K, _E} | Tail]) ->
+  read(Key, Tail).
