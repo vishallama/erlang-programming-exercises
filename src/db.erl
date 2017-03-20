@@ -10,7 +10,7 @@
 -author("vishal").
 
 %% API
--export([new/0, destroy/1, write/3, delete/2, read/2]).
+-export([new/0, destroy/1, write/3, delete/2, read/2, match/2]).
 
 new() -> [].
 
@@ -31,3 +31,10 @@ read(Key, [{Key, Element} | _Tail]) ->
   {ok, Element};
 read(Key, [{_K, _E} | Tail]) ->
   read(Key, Tail).
+
+match(_Element, []) ->
+  [];
+match(Element, [{Key, Element} | Tail]) ->
+  [Key | match(Element, Tail)];
+match(Element, [{_K, _E} | Tail]) ->
+  match(Element, Tail).
